@@ -13,8 +13,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class AsyncInvokeURLTask extends AsyncTask<Void, Void, String> {
@@ -64,5 +66,33 @@ public class AsyncInvokeURLTask extends AsyncTask<Void, Void, String> {
         return result;
     }
     @Override
-    public void onPostExecute(String result)
+    public void onPostExecute(String result){
+        if (onPostExecuteListener !=null) {
+            try {
+                if (showdialog)this.dialog.dismiss();
+                onPostExecuteListener.onPostExecute(result);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    private static String convertStreamToString(InputStream is){
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try {
+                is.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
 }
