@@ -22,18 +22,24 @@ public class ListAdapterHandphone extends BaseAdapter implements Filterable {
         this.context = context;
         this.list = list;
         this.filterd = this.list;
+
     }
     @Override
-    public int getCount(){
+    public int getCount()
+    {
         return filterd.size();
+
     }
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int position)
+    {
         return  filterd.get(position);
     }
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position)
+    {
         return  position;
+
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
