@@ -20,11 +20,11 @@
         </intent-filter>
         </activity>
         <activity
-            android:name="com.smartneasy.hargahponline.FormHandphone"
+            android:name="id.my.donny.jualbelihp_ti17d4.FormHandphone"
             android:label="@string/title_activity_add_new" >
         </activity>
         <activity
-            android:name="com.smartneasy.hargahponline.DetailHandphone"
+            android:name="id.my.donny.jualbelihp_ti17d4.DetailHandphone"
             android:label="@string/title_activity_detail_handphone" >
         </activity>
     </application>
